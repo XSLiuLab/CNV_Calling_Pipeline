@@ -1,0 +1,24 @@
+#PBS -N PBS_<head1>_snp
+
+#PBS -l nodes=1:ppn=1
+
+#PBS -l walltime=10:00:00
+
+#PBS -S /bin/bash
+
+#PBS -q normal_3
+
+cd $PBS_WORKDIR
+
+source activate R
+
+#<head1>=tumor_id
+
+#<head2>=normal_id
+
+path1= tumor_path
+
+path2= normal_path
+
+snp-pileup -g -q15 -Q20 -P100 -r25,0 /public/home/wangshx/songmf/prad_exon_facets/hg38.snp.vcf.gz ${path1}/<head1>.out.gz ${path2}/<head2>_gdc_realn.sort.bam ${path2}/<head1>_gdc_realn.sort.bam
+
